@@ -91,12 +91,12 @@ function LoginSignup() {
                 onClick={handleChecked}
                 checked={checked}
               >
-                Signup
+                S'enregistrer
               </Label>
               <Input
                 type="text"
                 name="username"
-                placeholder="Username"
+                placeholder="Pseudonyme"
                 value={username}
                 onChange={(e) => SetUsername(e.target.value)}
                 required
@@ -112,13 +112,13 @@ function LoginSignup() {
               <Input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => SetPassword(e.target.value)}
                 required
               />
             </form>
-            <FormButton onClick={handleSignUp}>Signup</FormButton>
+            <FormButton onClick={handleSignUp}>S'enregistrer</FormButton>
           </DivSignup>
           <DivLogin checked={checked}>
             <form onSubmit={handleLogin} >
@@ -128,7 +128,7 @@ function LoginSignup() {
                 onClick={handleChecked}
                 checked={!checked}
               >
-                Login
+                Connexion
               </Label>
               <Input
                 type="email"
@@ -141,12 +141,12 @@ function LoginSignup() {
               <Input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 required
                 value={password}
                 onChange={(e) => SetPassword(e.target.value)}
               />
-              <FormButton onClick={handleLogin}>Login</FormButton>
+              <FormButton onClick={handleLogin}>Se connecter</FormButton>
             </form>
           </DivLogin>
         </ContainerForm>

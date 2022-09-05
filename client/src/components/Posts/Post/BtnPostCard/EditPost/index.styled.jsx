@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "../../../../../theme";
 
-const EditBtnStyled = styled.button(() => ({
+const EditBtnStyled = styled.button(({hasUserLiked}) => ({
   border: "none",
   background: theme.color.secondary,
   color: theme.color.tertiary,
@@ -16,9 +16,7 @@ const EditBtnStyled = styled.button(() => ({
   ":hover": {
     color: "red",
   },
-  ":active": {
-    color: "red",
-  },
+  ...(hasUserLiked && {color:"red"})
 }));
 
 export default EditBtnStyled;

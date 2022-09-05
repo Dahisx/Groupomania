@@ -46,6 +46,7 @@ const Post = ({ post }) => {
   const refInputMessage = useRef(null);
   const inputImg = useRef(null);
 
+  
   const hasUserLiked = (post) => {
     const user = post.usersLiked.includes(userId);
     return !!user;
@@ -57,6 +58,11 @@ const Post = ({ post }) => {
       dispatch(deletePostToList(post._id));
     }
   };
+
+  useEffect(() => {
+    setLikes(post.usersLiked.length);
+  }
+  ,[post.usersLiked.length])
 
   const handleFileChange = (e) => {
     const file = e.target.files && e.target.files[0];
@@ -75,6 +81,7 @@ const Post = ({ post }) => {
         res = await dislikePost(post._id);
       } else {
         setLikes(likes + 1);
+
         res = await likePost(post._id);
       }
 
@@ -219,7 +226,7 @@ const Post = ({ post }) => {
           </div>
         )}
         <div>
-          <EditBtnStyled onClick={handleLike}>
+          <EditBtnStyled onClick={handleLike} hasUserLiked={hasUserLiked(post)}>
             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
             <span>{likes}</span>
           </EditBtnStyled>

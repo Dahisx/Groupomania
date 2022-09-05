@@ -16,7 +16,6 @@ import BtnContainer from "./BtnContainer";
 const UserCard = () => {
   const inputImg = useRef(null);
   const inputRefUserMsg = useRef(null);
-  const [userMsg, setUserMsg] = useState("");
   const [fileSelected, setFiledSelected] = useState(null);
   const username = useSelector((state) => state.user.username);
 
@@ -27,7 +26,11 @@ const UserCard = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const res = await createPost(userMsg, fileSelected);
+    if(!inputRefUserMsg?.current?.value) {
+      alert("Pas de message ecrit");
+      return;
+    }
+    const res = await createPost(inputRefUserMsg.current.value, fileSelected);
     if (res.status === 201 || res.status === 200) {
       inputImg.current.value = null;
       inputRefUserMsg.current.value = null;
@@ -46,7 +49,6 @@ const UserCard = () => {
         cols="45"
         placeholder="Ecrivez votre message."
         ref={inputRefUserMsg}
-        onChange={(e) => setUserMsg(e.target.value)}
       />
       <BtnContainer>
         <SendBtn onClick={handleClick} />
